@@ -5,7 +5,7 @@ import { OrdersController } from './orders.controller';
 import { OrdersService } from './orders.service';
 
 @Module({
-    imports:[TypeOrmModule.forFeature([])],
+    imports:[TypeOrmModule.forFeature([Order])],
     controllers: [OrdersController],
     providers: [OrdersService],
 })
