@@ -9,7 +9,7 @@ export class OrdersController {
 
     @Get()
     getOrders(){
-        return //this.orderServcie.getOrders();
+        return this.orderServcie.getOrders();
     }
 
 }
