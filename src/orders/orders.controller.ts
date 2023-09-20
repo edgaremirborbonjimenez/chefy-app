@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { Order } from 'src/entities/order.entity';
 import { FindAllOrdersQueryDTO } from 'src/dto/find-all-orders-query.dto';
@@ -16,7 +16,7 @@ export class OrdersController {
     }
 
     @Post()
-    postOrders(@Query() newOrder:CreateOrderDTO): Promise<Order>{
+    postOrders(@Body() newOrder:CreateOrderDTO): Promise<Order>{
         return this.orderServcie.createOrder(newOrder);
     }
 
