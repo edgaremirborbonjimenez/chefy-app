@@ -4,7 +4,7 @@ import { Order } from "./order.entity";
 import { Extra } from "./extra.entity";
 import { Option } from "./option.entity";
 
-@Entity({ name: "Entity" })
+@Entity({ name: "dishes" })
 export class Dish extends AbstractEntity {
     @Column({ nullable: false, type: "varchar", length: 30 })
     name: string;

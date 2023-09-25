@@ -1,9 +1,10 @@
-import { Column, ManyToOne, OneToMany } from "typeorm";
+import { Column, ManyToOne, OneToMany,Entity } from "typeorm";
 import AbstractEntity from "./abstract.entity";
 import { Dish } from "./dish.entity";
 import { OptionType } from "./enums/option-type.enum";
 import { Ingredient } from "./ingredients.entity";
 
+@Entity({ name: "options" })
 export class Option extends AbstractEntity {
     @Column({ nullable: false, type: "float" })
     price: number;

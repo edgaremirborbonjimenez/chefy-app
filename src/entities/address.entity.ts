@@ -1,7 +1,7 @@
 import { Column, Entity } from "typeorm";
 import AbstractEntity from "./abstract.entity";
 
-@Entity({ name: "Addresses" })
+@Entity({ name: "addresses" })
 export class Address extends AbstractEntity {
     @Column({ nullable: false, type: "varchar", length: 200 })
     streetAddress: string;
