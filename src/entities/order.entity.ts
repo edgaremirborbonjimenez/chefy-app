@@ -1,6 +1,7 @@
-import { Column, Entity, ManyToOne } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
 import AbstractEntity from "./abstract.entity";
 import { Contact } from "./contact.entity";
+import { Dish } from "./dish.entity";
 
 @Entity({ name: "orders" })
 export class Order extends AbstractEntity {
@@ -9,4 +10,7 @@ export class Order extends AbstractEntity {
 
     @ManyToOne(() => Contact, (contact) => contact.id)
     contact: Contact;
+
+    @OneToMany(() => Dish, (dish) => dish.order)
+    dishes: Dish[];
 }
