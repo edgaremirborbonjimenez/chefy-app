@@ -1,3 +1,5 @@
-export class CreateOrderDTO{
-    status:string;
+
+export class updateOrderDTO{
+    status: string;
 }
+
