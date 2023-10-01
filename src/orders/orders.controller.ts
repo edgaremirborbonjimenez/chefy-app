@@ -17,7 +17,7 @@ export class OrdersController {
     }
 
     @Patch(':id')
-    pathcOrders(@Param('id') id: string, updateOrder: updateOrderDTO): Promise<UpdateResult>{
+    pathcOrders(@Param('id') id: string, @Body() updateOrder: updateOrderDTO): Promise<UpdateResult>{
         return this.orderServcie.updateOrder(id, updateOrder);
     }
 
