@@ -1,7 +1,7 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindAllOrdersQueryDTO } from 'src/dto/find-all-orders-query.dto';
-import { updateOrderDTO } from 'src/dto/order.dto';
+import { updateOrderDTO } from 'src/dto/update-order';
 import { Order } from 'src/entities/order.entity';
 import { Repository, UpdateResult } from 'typeorm';
 
@@ -25,5 +25,4 @@ export class OrdersService {
     async updateOrder(id: string, updateOrder: updateOrderDTO): Promise<UpdateResult>{
        return this.orderRespository.update(id, updateOrder);
     }
-
 }

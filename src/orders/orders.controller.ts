@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post, Query } from '
 import { OrdersService } from './orders.service';
 import { Order } from 'src/entities/order.entity';
 import { FindAllOrdersQueryDTO } from 'src/dto/find-all-orders-query.dto';
-import { updateOrderDTO } from 'src/dto/order.dto';
+import { updateOrderDTO } from 'src/dto/update-order';
 import { UpdateResult } from 'typeorm';
 
 @Controller('orders')
