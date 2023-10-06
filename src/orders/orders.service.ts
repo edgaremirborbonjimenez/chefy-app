@@ -19,6 +19,7 @@ export class OrdersService {
             },
             skip: query.skip,
             take: query.count,
+            relations: ['dishes','contact']
         })
     }
     
