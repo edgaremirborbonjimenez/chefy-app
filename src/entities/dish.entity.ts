@@ -10,10 +10,13 @@ export class Dish extends AbstractEntity {
     name: string;
 
     @Column({ nullable: false, type: "int" })
-    quanitty: number;
+    quantity: number;
 
     @ManyToOne(() => Order, (order) => order.dishes)
     order: Order;
+
+    @Column({ nullable: false, type: "decimal" })
+    price:number;
 
     @OneToMany(() => Extra, (extra) => extra.dish)
     extras: Extra[];
