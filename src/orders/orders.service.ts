@@ -1,4 +1,4 @@
-import { HttpException, Injectable } from '@nestjs/common';
+import { BadRequestException, HttpException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindAllOrdersQueryDTO } from 'src/dto/find-all-orders-query.dto';
 import { updateOrderDTO } from 'src/dto/update-order';
@@ -8,10 +8,10 @@ import { Repository, UpdateResult } from 'typeorm';
 @Injectable()
 export class OrdersService {
 
-    constructor(@InjectRepository(Order) private orderRespository:Repository<Order>){}
+    constructor(@InjectRepository(Order) private orderRespository: Repository<Order>) { }
 
 
-    async getOrders(query:FindAllOrdersQueryDTO):Promise<Order[]>{
+    async getOrders(query: FindAllOrdersQueryDTO): Promise<Order[]> {
         return await this.orderRespository.find({
 
             where: {
@@ -19,11 +19,37 @@ export class OrdersService {
             },
             skip: query.skip,
             take: query.count,
-            relations: ['dishes','contact']
+            relations: ['dishes', 'contact']
         })
     }
-    
-    async updateOrder(id: string, updateOrder: updateOrderDTO): Promise<UpdateResult>{
-       return this.orderRespository.update(id, updateOrder);
+
+    async getOrder(id: string): Promise<Order> {
+
+        return await this.orderRespository.findOne({
+            where: {
+                id: id
+            },
+            relations: ['dishes', 'contact.address']
+        })
+
+    }
+
+    async updateOrder(id: string, updateOrder: updateOrderDTO): Promise<Order | undefined> {
+        try {
+
+            const orderUpdated = await this.orderRespository.update(id, updateOrder);
+
+            if (orderUpdated.affected && orderUpdated.affected > 0) {
+                const updatedOrder = await this.orderRespository.findOne({
+                    where: {
+                        id: id
+                    }
+                });
+                return updatedOrder;
+            }
+
+        } catch (error) {
+            return undefined;
+        }
     }
 }
