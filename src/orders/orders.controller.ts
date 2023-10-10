@@ -18,7 +18,7 @@ export class OrdersController {
 
     @Get(':id')
     getOneOrder(@Param('id') id: string): Promise<Order>{
-        return this.orderServcie.getOrder(id)
+        return this.orderServcie.getOrderById(id)
     }
 
     @Patch(':id')
