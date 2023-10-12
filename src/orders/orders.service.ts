@@ -29,7 +29,7 @@ export class OrdersService {
             where: {
                 id: id
             },
-            relations: ['dishes', 'contact.address']
+            relations: ['contact', 'contact.address','dishes', 'dishes.extras', 'dishes.options.ingredients']
         })
 
     }
@@ -43,7 +43,8 @@ export class OrdersService {
                 const updatedOrder = await this.orderRespository.findOne({
                     where: {
                         id: id
-                    }
+                    },
+                    relations:['contact', 'contact.address','dishes', 'dishes.extras', 'dishes.options.ingredients']
                 });
                 return updatedOrder;
             }
